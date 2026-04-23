@@ -59,6 +59,7 @@ def demo_hodnoceni_studentu():
     random_results = HodnoceniStudentu(random_numbers(30, 0, 100))
     print("\nNahodna skupina - pocet studentu:", random_results.count())
     print("Nahodna skupina - serazene vysledky:", random_results.get_sorted())
+    HodnoceniStudentu(random_numbers(500, 0, 100)).plot_histogram()
 
 
 def main():

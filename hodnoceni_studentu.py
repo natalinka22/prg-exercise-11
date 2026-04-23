@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 class HodnoceniStudentu:
     def __init__(self, scores):
         self.scores = list(scores)
@@ -120,6 +122,28 @@ class HodnoceniStudentu:
 
     def __str__(self):
         return f"HodnoceniStudentu: {self.count()} studentu, prumer {self.average():.1f}"
+
+
+    def plot_histogram(self, output_path="histogram_hodnoceni_studentu.png"):
+        figure, axis = plt.subplots(figsize=(8, 5))
+
+        # Grade-aligned bins: F(0-49), E(50-59), D(60-69), C(70-79), B(80-89), A(90-100)
+        bins = [0, 50, 60, 70, 80, 90, 101]
+
+        axis.hist(self.scores, bins=bins, color="steelblue", edgecolor="black")
+        axis.set_title("Rozlozeni znamek A-F")
+        axis.set_xlabel("Znamkove intervaly")
+        axis.set_ylabel("Pocet studentu")
+        axis.set_xlim(0, 100)
+        axis.set_xticks([25, 55, 65, 75, 85, 95])
+        axis.set_xticklabels(["F", "E", "D", "C", "B", "A"])
+        axis.grid(axis="y", alpha=0.25)
+
+        figure.tight_layout()
+        figure.savefig(output_path, dpi=150)
+        plt.close(figure)
+
+        return output_path
 
 
 
